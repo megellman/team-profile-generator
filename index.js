@@ -51,7 +51,7 @@ function getManagerInfo() {
             </div>
             <div class="details">
                 <p>ID: <span>${manager.id}</span></p>
-                <p>Email: <span>${manager.email}</span></p>
+                <p>Email: <a href="mailto:${manager.email}"><span>${engineer.email}</span></p></a>
                 <p>Office Number: <span>${manager.officeNumber}</span></p>
                 </div>
             </div>`, err => {
@@ -115,8 +115,8 @@ function addEngineer() {
     </div>
     <div class="details">
         <p>ID: <span>${engineer.id}</span></p>
-        <p>Email: <span>${engineer.email}</span></p>
-        <p>GitHub: <span>${engineer.github}</span></p>
+        <p>Email: <a href="mailto:${engineer.email}"><span>${engineer.email}</span></p></a>
+        <p>GitHub: <a href="https://github.com/${engineer.github}" target="_blank"><span>${engineer.github}</span></a></p>
     </div>
 </div>`, err => {
                 err ? console.log(err)
@@ -159,7 +159,7 @@ function addIntern() {
         </div>
         <div class="details">
             <p>ID: <span>${intern.id}</span></p>
-            <p>Email: <span>${intern.email}</span></p>
+            <p>Email: <a href="mailto:${intern.email}"><span>${intern.email}</span></p></a>
             <p>School: <span>${intern.school}</span></p>
         </div>
     </div>`, err => {
