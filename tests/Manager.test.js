@@ -1,21 +1,17 @@
 const Manager = require('../lib/manager');
 describe('Manager Class', () => {
-    it('Should return office number', () => {
-        const name = 'Ann';
-        const id = 123;
-        const email = 'test@email.com';
-        const officeNumber = 555;
-        const manager = new Manager(name, id, email, officeNumber);
+    it('fourth parameter should be the value of officeNumber', () => {
+        const manager = new Manager('Ann', 123, 'ann@email.com', 555);
         expect(manager.officeNumber).toEqual(555);
     });
     test('should return office number', () => {
-        const manager = new Manager('Joe', 123, 'test@gmail.com, 222');
-        jest.spyOn(manager, 'getOfficeNumber').mockImplementation(() => 222);
+        const manager = new Manager('Ann', 123, 'ann@email.com', 555);
+        jest.spyOn(manager, 'getOfficeNumber').mockImplementation(() => 555);
       
-        expect(manager.getOfficeNumber()).toBe(222);
+        expect(manager.getOfficeNumber()).toBe(555);
       });
     test('should return Manager', () => {
-        const manager = new Manager('Joe', 123, 'test@gmail.com, 222');
+        const manager = new Manager('Ann', 123, 'ann@email.com', 555);
         jest.spyOn(manager, 'getRole').mockImplementation(() => 'Manager');
       
         expect(manager.getRole()).toBe('Manager');
