@@ -1,19 +1,19 @@
 const Engineer = require('../lib/engineer');
 
 describe('Engineer Class', () => {
-    it('Should return github username', () => {
-        const engineer = new Engineer('Maya', 123, 'email@email.com', 'mayagithub');
+    it('fourth parameter should be the value of github username', () => {
+        const engineer = new Engineer('Maya', 123, 'maya@email.com', 'mayagithub');
 
         expect(engineer.github).toEqual('mayagithub');
     });
     test('should return github username', () => {
-        const engineer = new Engineer('Joe', 123, 'test@gmail.com', 'joegithub');
-        jest.spyOn(engineer, 'getGithub').mockImplementation(() => 'joegithub');
+        const engineer = new Engineer('Maya', 123, 'maya@email.com', 'mayagithub');
+        jest.spyOn(engineer, 'getGithub').mockImplementation(() => 'mayagithub');
       
-        expect(engineer.getGithub()).toBe('joegithub');
+        expect(engineer.getGithub()).toBe('mayagithub');
       });
     test('should return Engineer', () => {
-        const engineer = new Engineer('Joe', 123, 'test@gmail.com', 'joegithub');
+        const engineer = new Engineer('Maya', 123, 'maya@email.com', 'mayagithub');
         jest.spyOn(engineer, 'getRole').mockImplementation(() => 'Engineer');
       
         expect(engineer.getRole()).toBe('Engineer');
