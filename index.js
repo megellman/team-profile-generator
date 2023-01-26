@@ -31,7 +31,7 @@ function getManagerInfo() {
         console.log(response)
         let manager = new Manager(response.name, response.id, response.email, response.officeNumber)
         console.table(manager)
-        fs.writeFile('index.html', 
+        fs.writeFile('./dist/index.html', 
 `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +51,7 @@ function getManagerInfo() {
             </div>
             <div class="details">
                 <p>ID: <span>${manager.id}</span></p>
-                <p>Email: <a href="mailto:${manager.email}"><span>${engineer.email}</span></p></a>
+                <p>Email: <a href="mailto:${manager.email}"><span>${manager.email}</span></p></a>
                 <p>Office Number: <span>${manager.officeNumber}</span></p>
                 </div>
             </div>`, err => {
@@ -107,7 +107,7 @@ function addEngineer() {
             console.log(response)
             let engineer = new Engineer(response.name, response.id, response.email, response.github);
             console.table(engineer)
-            fs.appendFile('index.html', 
+            fs.appendFile('./dist/index.html', 
 `<div class="card">
     <div class="title">
         <h2>${engineer.name}</h2>
@@ -151,7 +151,7 @@ function addIntern() {
             console.log(response);
             let intern = new Intern(response.name, response.id, response.email, response.school);
             console.table(intern)
-            fs.appendFile('index.html', 
+            fs.appendFile('./dist/index.html', 
     `<div class="card">
         <div class="title">
             <h2>${intern.name}</h2>
@@ -170,7 +170,7 @@ function addIntern() {
 }
 
 function finish() {
-    fs.appendFile('index.html', `
+    fs.appendFile('./dist/index.html', `
 </div>
 </body>
 </html>`, err => {
