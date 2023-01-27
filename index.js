@@ -6,6 +6,7 @@ const Intern = require('./lib/intern');
 
 getManagerInfo()
 
+// Manager prompt and writes html file based on response
 function getManagerInfo() {
     inquirer.prompt([
         {
@@ -28,9 +29,7 @@ function getManagerInfo() {
             name: 'officeNumber'
         }
     ]).then((response) => {
-        console.log(response)
         let manager = new Manager(response.name, response.id, response.email, response.officeNumber)
-        console.table(manager)
         fs.writeFile('./dist/index.html', 
 `<!DOCTYPE html>
 <html lang="en">
@@ -50,18 +49,19 @@ function getManagerInfo() {
                 <h3>Manager</h3>
             </div>
             <div class="details">
-                <p>ID: <span>${manager.id}</span></p>
-                <p>Email: <a href="mailto:${manager.email}"><span>${manager.email}</span></p></a>
-                <p>Office Number: <span>${manager.officeNumber}</span></p>
+                <p><strong>ID: </strong><span>${manager.id}</span></p>
+                <p><strong>Email: </strong><a href="mailto:${manager.email}"><span>${manager.email}</span></p></a>
+                <p><strong>Office Number: </strong><span>${manager.officeNumber}</span></p>
                 </div>
             </div>`, err => {
             err ? console.log(err)
-                : loop();
+                : addOrDone();
         });
     })
 }
 
-function loop() {
+// Either add new engineer or intern or finish adding
+function addOrDone() {
     inquirer.prompt(
         {
             type: 'list',
@@ -82,7 +82,7 @@ function loop() {
 
 }
 
-
+// engineer prompt and append file with html card content
 function addEngineer() {
     inquirer.prompt([
             {
@@ -104,9 +104,7 @@ function addEngineer() {
                 name: 'github'
             }
         ]).then((response) => {
-            console.log(response)
             let engineer = new Engineer(response.name, response.id, response.email, response.github);
-            console.table(engineer)
             fs.appendFile('./dist/index.html', 
 `<div class="card">
     <div class="title">
@@ -114,19 +112,19 @@ function addEngineer() {
         <h3>Engineer</h3>
     </div>
     <div class="details">
-        <p>ID: <span>${engineer.id}</span></p>
-        <p>Email: <a href="mailto:${engineer.email}"><span>${engineer.email}</span></p></a>
-        <p>GitHub: <a href="https://github.com/${engineer.github}" target="_blank"><span>${engineer.github}</span></a></p>
+        <p><strong>ID: </strong><span>${engineer.id}</span></p>
+        <p><strong>Email: </strong><a href="mailto:${engineer.email}"><span>${engineer.email}</span></p></a>
+        <p><strong>GitHub: </strong><a href="https://github.com/${engineer.github}" target="_blank"><span>${engineer.github}</span></a></p>
     </div>
 </div>`, err => {
                 err ? console.log(err)
-                : loop();
+                : addOrDone();
             });
         })
     }
 
 
-
+// intern prompt and append file with html card content
 function addIntern() {
     inquirer.prompt([
         {
@@ -148,9 +146,7 @@ function addIntern() {
         }
     ])
         .then((response) => {
-            console.log(response);
             let intern = new Intern(response.name, response.id, response.email, response.school);
-            console.table(intern)
             fs.appendFile('./dist/index.html', 
     `<div class="card">
         <div class="title">
@@ -158,17 +154,18 @@ function addIntern() {
             <h3>Intern</h3>
         </div>
         <div class="details">
-            <p>ID: <span>${intern.id}</span></p>
-            <p>Email: <a href="mailto:${intern.email}"><span>${intern.email}</span></p></a>
-            <p>School: <span>${intern.school}</span></p>
+            <p><strong>ID: </strong><span>${intern.id}</span></p>
+            <p><strong>Email: </strong><a href="mailto:${intern.email}"><span>${intern.email}</span></p></a>
+            <p><strong>School: </strong><span>${intern.school}</span></p>
         </div>
     </div>`, err => {
                 err ? console.log(err)
-                    : loop();
+                    : addOrDone();
             });
         })
 }
 
+// adds the closing tag for card container div, body tag, and html tag to complete the html file
 function finish() {
     fs.appendFile('./dist/index.html', `
 </div>
