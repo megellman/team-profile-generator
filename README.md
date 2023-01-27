@@ -11,6 +11,8 @@
 
 
 ## Description
+
+[Video Walkthrough](https://watch.screencastify.com/v/JvUDmdSZkoc6X4SJHQtU)
     
 This command-line application generates a lineup of profile cards for a team based on the user's answers to prompted questions.
 
@@ -47,7 +49,7 @@ This project can be used to generate team information cards based on the user's 
   This project is covered under the MIT license. For more information please click [here](https://choosealicense.com/)
 
 ## Tests
-
+I used Jest to create the tests. To run the tests, enter `npm run test` in the command line. 
 
 ## Questions
 
